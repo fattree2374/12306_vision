@@ -8,6 +8,10 @@
 import scrapy
 
 
+class StationMapItem(scrapy.Item):
+    station_id = scrapy.Field()
+    station_name = scrapy.Field()
+
 
 class RailwayItem(scrapy.Item):
     # define the fields for your item here like:
