@@ -8,8 +8,14 @@ import csv
 
 class RailwayPipeline(object):
     def process_item(self, item, spider):
-        with open('station_id_name_map.csv','a+',newline='') as csvfile:
+        # with open('station_id_name_map.csv','a+',newline='') as csvfile:
+        #     writer = csv.writer(csvfile)
+        #     L=[item['station_id'],item['station_name']]
+        #     writer.writerow(L)
+        #     csvfile.close()
+
+        with open('station_data.csv','a+',newline='') as csvfile:
             writer = csv.writer(csvfile)
-            L=[item['station_id'],item['station_name']]
+            L=[item['date'], item['train_id'], item['station_no'],item['station_name'],item['start_time'],item['stopover_time'],item['arrive_time']]
             writer.writerow(L)
             csvfile.close()

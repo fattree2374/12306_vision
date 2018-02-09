@@ -18,7 +18,7 @@ data = json.loads(response.text[16:])
 # 打开车次列表文件
 with open('train_list.csv', 'a+', newline='') as csvfile:
     writer = csv.writer(csvfile)
-    for (ate,date_train) in data.items():  # 迭代所有日期
+    for (date,date_train) in data.items():  # 迭代所有日期
         for (train_type, train_list) in date_train.items():  # 迭代同一日期的车次类型
             for train in train_list:
                 # train 数据结构 {"station_train_code":"D1(北京-沈阳)","train_no":"24000000D10V"}
@@ -36,7 +36,7 @@ with open('train_list.csv', 'a+', newline='') as csvfile:
                     train_set.add(train_set_item)  # 并入集合
 
                     # 写入csv文件
-                    writer.writerow([code, train_no, from_station, to_station, from_station_telecode, to_station_telecode])
+                    writer.writerow([date, code, train_no, from_station, to_station, from_station_telecode, to_station_telecode])
 
     csvfile.close()  # 关闭文件
 print('总共抓取%d条车次信息' % len(train_set))
